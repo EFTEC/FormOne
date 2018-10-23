@@ -11,6 +11,7 @@ Creates HTML web Form on PHP
 
 ## version
 
+1.2 2018-10-22 Some cleanup.
 1.1 2018-10-22 new features
 1.0 2018-10-21 first version
 

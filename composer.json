@@ -1,7 +1,7 @@
 {
     "name": "eftec/formone",
     "description": "Creates HTML web Form on PHP ",
-    "version": "1.1",
+    "version": "1.2",
     "type": "library",
     "keywords": ["php","library","form"],
     "homepage": "https://github.com/EFTEC/formone",

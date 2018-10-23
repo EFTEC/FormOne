@@ -7,7 +7,7 @@ namespace eftec;
  * Class FormOne
  * @package eftec
  * @author Jorge Castro Castillo
- * @version 1.1 2018-oct-22
+ * @version 1.2 2018-oct-22
  * @copyright (c) Jorge Castro C. LGLPV2 License  https://github.com/EFTEC/FormOne
  * @see https://github.com/EFTEC/FormOne
  */
@@ -25,6 +25,7 @@ class FormOne
     private $items=[];
     private $extras=[];
     private $htmlInner;
+    private $bind=['id'=>'id','text'=>'text','extra'=>''];
 
 
     /**
@@ -93,12 +94,13 @@ class FormOne
         $this->itemValue=null;
         $this->label=null;
         $this->items=[];
+        $this->bind=['id'=>'id','text'=>'text','extra'=>''];
         $this->extras=[];
         $this->htmlInner=null;
         $this->disabled=false;
 
     }
-    
+
     private function renderSelect() {
         $html="<select {$this->renderId()} {$this->renderClasses()} {$this->renderExtra()}>\n";
         foreach($this->items as $item) {
@@ -164,7 +166,11 @@ class FormOne
     private function renderExtra() {
         $html="";
         foreach($this->extras as $extra) {
-            $html.=" {$extra['type']}='{$extra['value']}'";
+            if ($extra['value']===null) {
+                $html.=" {$extra['type']}";
+            } else {
+                $html.=" {$extra['type']}='{$extra['value']}'";
+            }
         }
         $html.=' '.(($this->disabled)?'disabled':'');
         return $html;
@@ -212,16 +218,25 @@ class FormOne
      * @param null|string $text
      * @param null|string $extra
      * @return $this
+     * @see FormOne::bind()
      */
     public function addItem($idOrArray,$text=null,$extra=null) {
         if ($idOrArray===null) return $this;
         if ($text!==null) {
             $arr = ['id' => $idOrArray, 'text' => $text, 'extra' => $extra];
         } else {
-            if (isset($idOrArray[0])) { // it's an indexed array
-                $arr = ['id' => $idOrArray[0], 'text' => $idOrArray[1], 'extra' => @$idOrArray[2]];
-            } else { // it's a associative array
-                $arr = $idOrArray;
+            if (is_object($idOrArray)) {
+                $arr['id']=$idOrArray->{$this->bind['id']};
+                $arr['text']=$idOrArray->{$this->bind['text']};
+                $arr['extra']=(@$this->bind['extra'])?@$idOrArray->{$this->bind['extra']}:'';
+            } else {
+                if (isset($idOrArray[0])) { // it's an indexed array
+                    $arr = ['id' => $idOrArray[0], 'text' => $idOrArray[1], 'extra' => @$idOrArray[2]];
+                } else { // it's a associative array
+                    $arr['id'] = $idOrArray[$this->bind['id']];
+                    $arr['text'] = $idOrArray[$this->bind['text']];
+                    $arr['extra'] = (@$this->bind['extra'])?@$idOrArray[@$this->bind['extra']]:'';
+                }
             }
         }
         $this->items[]=$arr;
@@ -229,27 +244,38 @@ class FormOne
     }
 
     /**
-     * @param  array $items
+     * @param array $items
      * @return $this
      */
     public function addItems($items) {
         if ($items===null) return $this;
         foreach($items as $item) {
-            $this->addItem($item);
+            $this->addItem($item,null,null);
         }
         return $this;
     }
 
     /**
-     * @param $type
-     * @param $value
+     * @param string $type
+     * @param string|null $value
      * @return $this
      */
-    public function addExtra($type,$value) {
-        $arr=['type'=>$type,'value'=>$value];
-        $this->extras[]=$arr;
+    public function addExtra($type,$value=null) {
+        $this->extras[]=['type'=>$type,'value'=>$value];
         return $this;
     }
+
+    /**
+     * It sets the binding of fields. It's used by addItem()
+     * @param $bind=['id'=>'id','text'=>'text','extra'=>'']
+     * @return $this
+     */
+    public function bind($bind) {
+        $this->bind=$bind;
+        return $this;
+    }
+
+
     public function inner($htmlInner) {
         $this->htmlInner=$htmlInner;
         return $this;
