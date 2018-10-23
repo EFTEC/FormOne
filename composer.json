@@ -1,0 +1,25 @@
+{
+    "name": "eftec/formone",
+    "description": "Creates HTML web Form on PHP ",
+    "version": "1.1",
+    "type": "library",
+    "keywords": ["php","library","form"],
+    "homepage": "https://github.com/EFTEC/formone",
+    "license": "LGPL-2.1-or-later",
+    "authors": [
+        {
+            "name": "Jorge Castro",
+            "email": "jorge.castro.c@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "ext-ctype": "*",
+        "eftec/validationone": "1.11"
+    },
+    "autoload": {
+        "psr-4": {
+            "eftec\\": "lib/"
+        }
+    }
+}
