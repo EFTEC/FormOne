@@ -7,7 +7,7 @@ namespace eftec;
  * Class FormOne
  * @package eftec
  * @author Jorge Castro Castillo
- * @version 1.2 2018-oct-22
+ * @version 1.4 2018-oct-27
  * @copyright (c) Jorge Castro C. LGLPV2 License  https://github.com/EFTEC/FormOne
  * @see https://github.com/EFTEC/FormOne
  */
@@ -51,6 +51,8 @@ class FormOne
         $this->prefix = $prefix;
     }
 
+
+
     public function render() {
         $html="";
         switch ($this->type) {
@@ -60,6 +62,7 @@ class FormOne
             case 'text':
             case 'email':
             case 'number':
+            case 'password':
                 $html=$this->renderInput($this->type);
                 break;
             case 'checkbox':
@@ -101,6 +104,26 @@ class FormOne
 
     }
 
+    //<editor-fold desc="render methods">
+
+    /**
+     * Start a form (<form>)
+     * @param string $method
+     * @param string $enctype=['application/x-www-form-urlencoded','multipart/form-data','text/plain][$i]
+     * @param string $action
+     * @return string
+     */
+    public function start($method='POST',$enctype='multipart/form-data',$action='') {
+        $actHtml=($action)?"action='$action'":'';
+        return "<form method='$method' enctype='$enctype' $actHtml>";
+    }
+    /**
+     * End a form (</form>)
+     * @return string
+     */
+    public function end() {
+        return "</form>";
+    }
     private function renderSelect() {
         $html="<select {$this->renderId()} {$this->renderClasses()} {$this->renderExtra()}>\n";
         foreach($this->items as $item) {
@@ -175,6 +198,29 @@ class FormOne
         $html.=' '.(($this->disabled)?'disabled':'');
         return $html;
     }
+    //</editor-fold>
+
+    /**
+     * @param string $idForm
+     * @return FormOne
+     */
+    public function idForm($idForm)
+    {
+        $this->idForm = $idForm;
+        return $this;
+    }
+    /**
+     * @param string $prefix
+     * @return FormOne
+     */
+    public function prefix($prefix)
+    {
+        $this->prefix = $prefix;
+        return $this;
+    }
+
+
+
     public function name($name) {
         $this->name=$name;
         return $this;
@@ -192,6 +238,11 @@ class FormOne
         $this->disabled=$disabled;
         return $this;
     }
+
+    /**
+     * @param $type=['select','text','password','email','number','checkbox','radio','textarea','label','submit','button'][$i]
+     * @return $this
+     */
     public function type($type) {
         $this->type=$type;
         return $this;
@@ -200,7 +251,13 @@ class FormOne
         $this->classes[]=$classes;
         return $this;
     }
+
+    /**
+     * @param string|integer|boolean|double $value
+     * @return $this
+     */
     public function value($value) {
+
         $this->value=$value;
         return $this;
     }
@@ -262,6 +319,10 @@ class FormOne
      */
     public function addExtra($type,$value=null) {
         $this->extras[]=['type'=>$type,'value'=>$value];
+        return $this;
+    }
+    public function onClick($js) {
+        $this->extras[]=['type'=>'onClick','value'=>$js];
         return $this;
     }
 

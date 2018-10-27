@@ -11,9 +11,10 @@ Creates HTML web Form on PHP
 
 ## version
 
-1.2 2018-10-22 Some cleanup.
-1.1 2018-10-22 new features
-1.0 2018-10-21 first version
+* 1.4 2018-20-27 start(),end(),prefix(),idform() and "password" type.
+* 1.2 2018-10-22 Some cleanup.
+* 1.1 2018-10-22 new features
+* 1.0 2018-10-21 first version
 
 
 
