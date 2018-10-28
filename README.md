@@ -48,17 +48,17 @@ It sets the attribute disable of the chain
 
 | type     | Description             |
 |----------|-------------------------|
-| select   | <select>                |
-| text     | <input type='text'>     |
-| password | <input type='password'> |
-| email    | <input type='email'>    |
-| number   | <input type='number'>   |
-| checkbox | <input type='checkbox'> |
-| radio    | <input type='radio'>    |
-| textarea | <textarea></textarea>   |
-| label    | <label>label</label>    |
-| submit   | <button type='submit'>submit</button>  |
-| button   | <button type='button'>button</button>  |
+| select   | ```<select>```             |
+| text     | ```<input type='text'>```     |
+| password | ```<input type='password'>``` |
+| email    | ```<input type='email'>```    |
+| number   | ```<input type='number'>```   |
+| checkbox | ```<input type='checkbox'>``` |
+| radio    | ```<input type='radio'>```    |
+| textarea | ```<textarea></textarea> ```  |
+| label    | ```<label>label</label>```    |
+| submit   | ```<button type='submit'>submit</button>```  |
+| button   | ```<button type='button'>button</button>```  |
 
 ## Example
 ```php
