@@ -7,7 +7,7 @@ namespace eftec;
  * Class FormOne
  * @package eftec
  * @author Jorge Castro Castillo
- * @version 1.5 2018-oct-27
+ * @version 1.7 2018-oct-29
  * @copyright (c) Jorge Castro C. LGLPV2 License  https://github.com/EFTEC/FormOne
  * @see https://github.com/EFTEC/FormOne
  */
@@ -64,6 +64,7 @@ class FormOne
                 $html=$this->renderSelect();
                 break;
             case 'text':
+            case 'hidden':
             case 'email':
             case 'number':
             case 'password':
@@ -206,7 +207,11 @@ class FormOne
         if (isset($this->classXType[$this->type])) {
             $this->classes[]=$this->classXType[$this->type];
         }
-        return "class='".implode(' ',$this->classes)."'";
+        if (count($this->classes)) {
+            return "class='" . implode(' ', $this->classes) . "'";
+        } else {
+            return ''; // no class.
+        }
     }
     private function renderExtra() {
         $html="";
@@ -264,7 +269,7 @@ class FormOne
     }
 
     /**
-     * @param $type=['select','text','password','email','number','checkbox','radio','textarea','label','submit','button'][$i]
+     * @param $type=['select','text','hidden','password','email','number','checkbox','radio','textarea','label','submit','button'][$i]
      * @return $this
      */
     public function type($type) {

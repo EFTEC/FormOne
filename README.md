@@ -81,6 +81,7 @@ It sets the attribute disable of the chain
 |----------|-------------------------|
 | select   | ```<select>```             |
 | text     | ```<input type='text'>```     |
+| hidden     | ```<input type='hidden'>```     |
 | password | ```<input type='password'>``` |
 | email    | ```<input type='email'>```    |
 | number   | ```<input type='number'>```   |
@@ -189,7 +190,8 @@ it renders
 
 
 ## version
-
+* 1.7 2018-20-29 A small optimization. Now if the class is empty then it doesn't render class='' 
+* 1.6 2018-20-28 Added "hidden" type.
 * 1.5 2018-20-27 Some cleanup and classType()
 * 1.4 2018-20-27 start(),end(),prefix(),idform() and "password" type.
 * 1.2 2018-10-22 Some cleanup.
