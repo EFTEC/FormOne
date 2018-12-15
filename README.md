@@ -9,6 +9,34 @@ Creates HTML web Form on PHP
 [![php](https://img.shields.io/badge/php-7.x-green.svg)]()
 [![CocoaPods](https://img.shields.io/badge/docs-70%25-yellow.svg)]()
 
+Instead of write this code
+
+```html
+<form method='POST' enctype='multipart/form-data' >
+<label for='field1'>field 1:</label>
+<input type='text' name='field1' id='field1'value='' />
+<br>
+</form>
+```
+Use instead this one
+
+```php
+<?php
+$f=new \eftec\FormOne();
+
+echo $f->start();
+echo $f->id('field1')
+    ->label('field 1:')
+    ->type('label')
+    ->render();
+echo $f->id('field1')
+    ->type('text')
+    ->render();
+echo $f->renderRaw('<br>');
+echo $f->end();
+```
+
+
 - [FormOne](#formone)
   * [render()](#render--)
   * [start()](#start--)
