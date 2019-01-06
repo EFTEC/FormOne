@@ -3,8 +3,8 @@ Creates HTML web Form on PHP
 
 [![Packagist](https://img.shields.io/packagist/v/eftec/formone.svg)](https://packagist.org/packages/eftec/formone)
 [![Total Downloads](https://poser.pugx.org/eftec/FormOne/downloads)](https://packagist.org/packages/eftec/formone)
-[![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)]()
-[![composer](https://img.shields.io/badge/composer-%3E1.6-blue.svg)]()
+[![Maintenance](https://img.shields.io/maintenance/yes/2019.svg)]()
+[![composer](https://img.shields.io/badge/composer-%3E1.8-blue.svg)]()
 [![php](https://img.shields.io/badge/php->5.6-green.svg)]()
 [![php](https://img.shields.io/badge/php-7.x-green.svg)]()
 [![CocoaPods](https://img.shields.io/badge/docs-70%25-yellow.svg)]()
