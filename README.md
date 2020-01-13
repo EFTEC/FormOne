@@ -219,6 +219,7 @@ it renders
 
 
 ## version
+* 1.8 2020-01-13 Some small updates
 * 1.7 2018-20-29 A small optimization. Now if the class is empty then it doesn't render class='' 
 * 1.6 2018-20-28 Added "hidden" type.
 * 1.5 2018-20-27 Some cleanup and classType()
